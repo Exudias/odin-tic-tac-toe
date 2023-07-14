@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -15,8 +15,8 @@
         <div class="main">
             <div class="game-window-container">
                 <div class="player-picker">
-                    <button>O</button>
-                    <button>X</button>
+                    <button id="pick-o" disabled>O</button>
+                    <button id="pick-x">X</button>
                 </div>
                 <div class="game-container">
                     <div class="game">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="game-controls">
-                    <button>Restart</button>
+                    <button id="restart">Restart</button>
                 </div>
             </div>
         </div>
