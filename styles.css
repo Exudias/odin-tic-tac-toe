@@ -137,6 +137,7 @@ button:disabled {
     align-items: center;
 
     font-size: 10vh;
+    line-height: 10vh;
 
     /* Prevent selecting text */
     -webkit-user-select: none; /* Safari */
@@ -144,6 +145,10 @@ button:disabled {
     user-select: none; /* Standard syntax */
 
     transition: 0.1s linear;
+}
+
+.grid-item:empty {
+    color: transparent;
 }
 
 .grid-item:hover {
