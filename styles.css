@@ -190,3 +190,45 @@ button:disabled {
     align-items: center;
     text-align: center;
 }
+
+.winner-overlay {
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 100%;
+    transition: 0.1s linear;
+}
+
+.winner-panel {
+    pointer-events: none;
+
+    height: 128px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 4vw;
+
+    transition: 0.1s linear;
+}
+
+.winner-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.winner-overlay.hidden > div {
+    width: 0%;
+    color: transparent;
+}

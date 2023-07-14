@@ -3,6 +3,8 @@ const pickXButton = document.querySelector("#pick-x");
 const pickOButton = document.querySelector("#pick-o");
 const restartButton = document.querySelector("#restart");
 const gridItems = document.querySelectorAll(".grid-item");
+const winnerOverlay = document.querySelector(".winner-overlay");
+const winnerPanel = document.querySelector(".winner-panel");
 
 // Objects & logic
 const gameBoard = function() {
@@ -40,9 +42,18 @@ const gameBoard = function() {
 
     const getDiagsWinner = () => 
     {
-        const diagsWins = (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] || 
-            board[2][0] === board[1][1] && board[1][1] === board[0][2] && board[2][0]);
-        return diagsWins ? (board[0][0] ? board[0][0] : board[2][0]) : "";
+        const diags1Wins = board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0];
+        const diags2Wins = board[2][0] === board[1][1] && board[1][1] === board[0][2] && board[2][0];
+
+        if (diags1Wins)
+        {
+            return board[0][0];
+        }
+        if (diags2Wins)
+        {
+            return board[2][0];
+        } 
+        return "";
     };
 
     const getFreeSpaces = () => {
@@ -160,20 +171,22 @@ const game = function() {
         {
             if (result === 0)
             {
-                console.log("It's a draw!");
+                winnerOverlay.classList.remove("hidden");
+                winnerPanel.textContent = "It's... a draw...";
             }
             else
             {
                 if (result === playerChoice)
                 {
-                    console.log("Player wins!");
+                    winnerOverlay.classList.remove("hidden");
+                    winnerPanel.textContent = "Winner: Player!";
                 }
                 else
                 {
-                    console.log("AI wins!");
+                    winnerOverlay.classList.remove("hidden");
+                    winnerPanel.textContent = "Winner: Computer!";
                 }
             }
-            restart();
             return true;
         }
         return false;
@@ -201,6 +214,12 @@ const game = function() {
 }();
 
 // Events
+winnerOverlay.addEventListener("click", (e) => {
+    e.stopPropagation();
+    winnerOverlay.classList.add("hidden");
+    game.restart();
+});
+
 pickXButton.addEventListener("click", () => {
     pickXButton.disabled = true;
     pickOButton.disabled = false;
